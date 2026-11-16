@@ -30,6 +30,15 @@ Snapshot taken 2026-11-17 from the files that are installed and running.
 +------------------+    +------------------+    +---------------------+
 ```
 
+## Checking evidence
+
+`python3 scripts/check_evidence.py SPEC EVIDENCE` checks that every
+criterion in a spec has exactly one proof row in its EVIDENCE.md. It exits 0
+when complete, 1 with one problem per line, and 2 on bad input. Criteria are
+lines starting `AC<n>.` under `## Acceptance criteria`. Proofs are the second
+cell of table rows whose first cell is `AC<n>`, and empty, `TODO`, `TBD`, `-`
+or `UNPROVEN` count as no proof.
+
 ## Left out on purpose
 
 - Run and decision logs (`run-log.md`, `decision-log.md`).
