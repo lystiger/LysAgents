@@ -1,0 +1,12 @@
+# Models LysControl may offer when editing (brief decision 30). Only these can be written.
+# Claude Code aliases come from the Agent tool's model list; Codex models from ~/.codex/config.toml.
+
+[claude-code]
+models = ["opus", "sonnet", "haiku", "fable", "inherit-parent", "auto"]
+
+[codex]
+models = ["gpt-6.1-sol"]
+efforts = ["low", "medium", "high", "xhigh"]
+
+[pstack]
+budgets = ["unlimited (max)", "large (xhigh)", "medium (high)", "small (medium)"]

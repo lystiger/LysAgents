@@ -1,0 +1,21 @@
+# Which agent runs each playbook stage (project-playbook.md, "Factory stages").
+# Only harness and skill live here. Models and effort are read from each
+# harness's own config, so this file never goes stale when a model changes.
+
+[[stage]]
+name = "PRETEST"
+harness = "claude-code"
+skill = "orchestrator chat"
+writes = ["brief.md", "spec.md", "scenarios.md", "holdouts"]
+
+[[stage]]
+name = "DEV"
+harness = "claude-code"
+skill = "poteto-mode"
+writes = ["branch", "PR", "EVIDENCE.md"]
+
+[[stage]]
+name = "TEST"
+harness = "codex"
+skill = "reviewer"
+writes = ["VERDICT.md"]
