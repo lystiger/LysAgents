@@ -30,6 +30,27 @@ Snapshot taken 2026-11-17 from the files that are installed and running.
 +------------------+    +------------------+    +---------------------+
 ```
 
+## Running the TEST gate
+
+`scripts/lys_test.py` runs the TEST stage on your machine and posts the result
+as the commit status `lys/verdict`, so branch protection can block merges
+without a PASS. No GitHub Actions minutes are used.
+
+```
+python3 scripts/lys_test.py <PR> \
+  --spec trials/<name>/spec.md --evidence trials/<name>/EVIDENCE.md \
+  --holdouts ~/lys-holdouts/<name>
+```
+
+It checks out the PR head in a throwaway worktree, runs `<holdouts>/run
+<worktree>` (the holdouts folder must be outside the repository), then runs
+Codex with `lysstack/operating_system/test-brief.md` and reads the last
+`Overall:` line. Failed holdouts, a missing `Overall:` line, UNPROVEN, or a
+verifier that edits tracked files all post `failure`. Runs are kept in
+`~/.lys-test/runs/`. Use `--verifier` or `LYS_VERIFIER` for a different
+command, `--no-post` for a dry run and `--comment` to post the verdict on the
+PR. To enforce it, require the `lys/verdict` status check on `main`.
+
 ## Left out on purpose
 
 - Run and decision logs (`run-log.md`, `decision-log.md`).
